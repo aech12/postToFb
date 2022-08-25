@@ -1,2 +1,1 @@
-# postToFb
-Created with CodeSandbox
+App that allows you to post to FB from your own web
