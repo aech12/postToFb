@@ -20,7 +20,7 @@ export default function App({ props }) {
   return (
     <div>
       <canvas ref={canvasRef} {...props} />
-      <button onClick={() => getJpg()}>Get JPG</button>
+      {/* <button onClick={() => getJpg()}>Get JPG</button> */}
       {/* <img src="" /> */}
     </div>
   );
