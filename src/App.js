@@ -39,22 +39,22 @@ export default function App() {
       .then((res) => res.blob())
       .then(console.log);
 
-    const fileReader = new FileReader();
-    fileReader.onloadend = async () => {
-      const photoData = canvasBlobFromBase64;
-      const formData = new FormData();
+    // const fileReader = new FileReader();
+    // fileReader.onloadend = async () => {
+    const photoData = canvasBlobFromBase64;
+    const formData = new FormData();
 
-      formData.append("access_token", fbUserAccessToken);
-      formData.append("source", photoData);
-      formData.append("message", "some status message");
+    formData.append("access_token", fbUserAccessToken);
+    formData.append("source", photoData);
+    formData.append("message", "some status message");
 
-      let response = await fetch(`https://graph.facebook.com/me/photos`, {
-        body: formData,
-        method: "post"
-      });
-      response = await response.json();
-      console.log(response);
-    };
+    let response = await fetch(`https://graph.facebook.com/me/photos`, {
+      body: formData,
+      method: "post"
+    });
+    response = await response.json();
+    console.log("post response", response);
+    // };
   };
 
   return (
