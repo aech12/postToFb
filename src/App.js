@@ -8,6 +8,7 @@ import * as data from "./data";
 export default function App() {
   const [fbUserAccessToken, setFbUserAccessToken] = useState();
   const [fbAvailability, setFbAvailability] = useState();
+  const [me, setMe] = useState();
 
   // Initializes the Facebook SDK
   const isFbSDKInitialized = useInitFbSDK();
@@ -63,12 +64,19 @@ export default function App() {
   const share2 = async () => {
     return await fetch("https://graph.facebook.com/me/photos", {
       body: `url=https://www.facebook.com/images/fb_icon_325x325.png&published=true&access_token=${fbUserAccessToken}`,
-
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: "POST"
     });
+  };
+
+  const getMe = async () => {
+    const res = await fetch(
+      `https://graph.facebook.com/me?access_token=${fbUserAccessToken}`
+    );
+    console.log("res", res);
+    setMe(res.data);
   };
 
   return (
@@ -81,6 +89,7 @@ export default function App() {
       <button onClick={share2}>Upload pic</button>
       <Canvas />
       <button onClick={() => shareOnFb()}>Share on FB</button>
+      <button onClick={() => me()}>Share on FB</button>
     </div>
   );
 }
