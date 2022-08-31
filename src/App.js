@@ -60,15 +60,25 @@ export default function App() {
     console.log("post response", response);
   };
 
+  const share2 = async () => {
+    return await fetch("https://graph.facebook.com/me/photos", {
+      body: `url=https://www.facebook.com/images/fb_icon_325x325.png&published=true&access_token=${fbUserAccessToken}`,
+
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      method: "POST"
+    });
+  };
+
   return (
     <div className="App">
       <h1>Hello CodeSandbox 0.301</h1>
       <p>
         FB status:{fbAvailability} {fbUserAccessToken}
       </p>
-      <button onClick={logInToFB} className="btn confirm-btn">
-        Login with Facebook
-      </button>
+      <button onClick={logInToFB}>Login with Facebook</button>
+      <button onClick={share2}>Upload pic</button>
       <Canvas />
       <button onClick={() => shareOnFb()}>Share on FB</button>
     </div>
