@@ -87,6 +87,7 @@ export default function App() {
       </p>
       <button onClick={logInToFB}>Login with Facebook</button>
       <button onClick={share2}>Upload pic</button>
+      <button onClick={getMe}>Upload pic</button>
       <Canvas />
       <button onClick={() => shareOnFb()}>Share on FB</button>
       <button onClick={() => me()}>Share on FB</button>
