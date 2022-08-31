@@ -7,6 +7,7 @@ import * as data from "./data";
 
 export default function App() {
   const [fbUserAccessToken, setFbUserAccessToken] = useState();
+  const [fbAvailability, setFbAvailability] = useState();
 
   // Initializes the Facebook SDK
   const isFbSDKInitialized = useInitFbSDK();
@@ -16,6 +17,7 @@ export default function App() {
     if (isFbSDKInitialized) {
       window.FB.getLoginStatus((response) => {
         setFbUserAccessToken(response.authResponse?.accessToken);
+        setFbAvailability(response?.status);
       });
       // res :
       // status: 'connected',
@@ -39,7 +41,7 @@ export default function App() {
     const canvasBlobFromBase64 = await fetch(data.jpg).then((res) =>
       res.blob()
     );
-
+    console.log("canvas", canvasBlobFromBase64);
     const formData = new FormData();
     formData.append("access_token", fbUserAccessToken);
     formData.append("source", canvasBlobFromBase64);
@@ -57,7 +59,9 @@ export default function App() {
   return (
     <div className="App">
       <h1>Hello CodeSandbox 0.301</h1>
-      <p>FB status: {fbUserAccessToken}</p>
+      <p>
+        FB status:{fbAvailability} {fbUserAccessToken}
+      </p>
       <button onClick={logInToFB} className="btn confirm-btn">
         Login with Facebook
       </button>
