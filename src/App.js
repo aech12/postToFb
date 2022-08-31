@@ -37,6 +37,10 @@ export default function App() {
   }, []);
 
   const shareOnFb = async () => {
+    window.FB.api("/me/photos", "post", {
+      source: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
+    });
+
     // convert jpg base 64 to Blob
     const canvasBlobFromBase64 = await fetch(data.jpg).then((res) =>
       res.blob()
