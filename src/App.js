@@ -74,9 +74,9 @@ export default function App() {
   const getMe = async () => {
     const res = await fetch(
       `https://graph.facebook.com/me?access_token=${fbUserAccessToken}`
-    );
+    ).then((r) => r.body);
     console.log("res", res);
-    setMe(res.data);
+    setMe(res);
   };
 
   return (
@@ -87,7 +87,7 @@ export default function App() {
       </p>
       <button onClick={logInToFB}>Login with Facebook</button>
       <button onClick={share2}>Upload pic</button>
-      <button onClick={getMe}>Upload pic</button>
+      <button onClick={getMe}>Get me</button>
       <Canvas />
       <button onClick={() => shareOnFb()}>Share on FB</button>
       <button onClick={() => me()}>Share on FB</button>
